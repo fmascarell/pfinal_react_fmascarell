@@ -1,0 +1,16 @@
+/* styles.css */
+.nav-link {
+  color: #007bff; /* Cambia el color del texto */
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  padding: 5px 10px; /* Agrega espacio alrededor del enlace */
+}
+
+.nav-link:hover {
+  background-color: #f8f9fa; /* Cambia el fondo en el hover */
+  color: #0056b3; /* Cambia el color del texto en el hover */
+}
+
+.no-margin {
+    margin: 0 !important; /* Quita el margen */
+  }
+  

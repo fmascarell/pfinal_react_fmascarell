@@ -16,10 +16,7 @@ function NavBar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavLink
-                className={({ isActive }) => isActive ? "btn btn-outline-primary" : "btn"} to="/">
-                Inicio
-              </NavLink>
+              <NavLink className="nav-link" to="/category">Inicio</NavLink>
               <NavDropdown title="Productos" id="collapsible-nav-dropdown">
                 <NavDropdown.Item>
                   <Link to="/category/concentrados" className="nav-link">
@@ -32,6 +29,7 @@ function NavBar() {
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
+              <NavLink className="nav-link" to="/quienes-somos">Quienes somos</NavLink>
             </Nav>
             <Nav>
               <Link to="/cart">

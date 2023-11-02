@@ -20,7 +20,7 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<ItemListContainer greeting="Bienvenidos"/>}/>
+        <Route path="/category" element={<ItemListContainer greeting="Bienvenidos"/>}/>
         <Route path='*' element={<Navigate to='/' />} />                  
       </Routes>
     </Router>

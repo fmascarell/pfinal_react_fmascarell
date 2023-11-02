@@ -1,13 +1,12 @@
-/* styles.css */
 .nav-link {
-  color: #007bff; /* Cambia el color del texto */
-  text-decoration: none; /* Elimina el subrayado de los enlaces */
-  padding: 5px 10px; /* Agrega espacio alrededor del enlace */
+  color: #007bff; 
+  text-decoration: none; 
+  padding: 5px 10px; 
 }
 
 .nav-link:hover {
-  background-color: #f8f9fa; /* Cambia el fondo en el hover */
-  color: #0056b3; /* Cambia el color del texto en el hover */
+  background-color: #b5bdc1; 
+  color: #0e0f11; 
 }
 
 .no-margin {

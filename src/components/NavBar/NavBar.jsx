@@ -12,18 +12,18 @@ function NavBar() {
     <>
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary fixed-top">
         <Container className="w-100">
-          <a className="navbar-brand" href="/"><Logo /></a>
+          <NavLink className="navbar-brand" href="/"><Logo /></NavLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavLink className="nav-link" to="/category">Inicio</NavLink>
+              <NavLink className="nav-link" to="/home">Inicio</NavLink>
               <NavDropdown title="Productos" id="collapsible-nav-dropdown">
-                <NavDropdown.Item>
-                  <Link to="/category/concentrados" className="nav-link">
+                <NavDropdown.Item eventKey="1">
+                  <Link to="/category/jugos" className="nav-link">
                     Jugos Concentrados
                   </Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item>
+                <NavDropdown.Item eventKey="2">
                   <Link to="/category/sucedaneos" className="nav-link">
                     Vinagres y Sucedáneos
                   </Link>
@@ -44,3 +44,4 @@ function NavBar() {
 }
 
 export default NavBar;
+

@@ -14,14 +14,18 @@ import "./components/NavBar/NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/CartWidget/CartWidget.css";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/category" element={<ItemListContainer greeting="Bienvenidos"/>}/>
-        <Route path='*' element={<Navigate to='/' />} />                  
+        <Route path='/home' element={<Home/> } />
+        <Route path='/category/:cid' element={<ItemListContainer greeting='Productos' /> } />
+        <Route path='/category/:pid' element={<ItemDetailContainer /> } />                
+        <Route path='*' element={<Navigate/>} />
       </Routes>
     </Router>
   );

@@ -8,7 +8,7 @@ export const ItemDetailContainer = () => {
     const [ product, setProduct ] = useState({})
     const { pid } = useParams()
     
-    console.log(pid)
+    //console.log(pid)
        
     return (
         <div className="row">

@@ -1,6 +1,6 @@
 const products = [
   {
-    id: 1,
+    id: "1",
     name: "Pulpa Durazno",
     category: "jugos",
     price: "2.500",
@@ -9,7 +9,7 @@ const products = [
     image: "/img/durazno.jpg",
   },
   {
-    id: 2,
+    id: "2",
     name: "Vinagre Blanco",
     category: "sucedaneos",
     price: "2.500",
@@ -18,7 +18,7 @@ const products = [
     image : "/img/blanco.jpg",
   },
   {
-    id: 3,
+    id: "3",
     name: "Pulpa Frambueza",
     category: "jugos",
     price: "2.500",
@@ -27,7 +27,7 @@ const products = [
     image: "/img/frambueza.jpg",
   },
   {
-    id: 4,
+    id: "4",
     name: "Vinagre Tinto",
     category: "sucedaneos",
     price: "2.500",
@@ -36,7 +36,7 @@ const products = [
     image : "/img/tinto.jpg",
   },
   {
-    id: 5,
+    id: "5",
     name: "Pulpa Melón",
     category: "jugos",
     price: "2.500",
@@ -45,20 +45,29 @@ const products = [
     image: "/img/melon.jpeg",
   },
   {
-    id: 6,
+    id: "6",
     name: "Sucedáneo Limón",
     category: "sucedaneos",
     price: "2.500",
     stock: 50,
     description: "Sucedáneo de limón",
     image : "/img/limon.jpg",
-  },
+  }
 ];
 
-export const mFetch = (id) => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res(id ? products.find((prod) => prod.id === id) : products);
-    }, 500);
-  });
-};
+export const mFetch=() => {
+  return new Promise ((res, rej) => {
+      setTimeout(() =>{
+          res(products)
+      }, 500)
+  })
+}
+
+
+export const mFetchUnique=(id)=> {
+  return new Promise((res,rej)=>{
+      setTimeout(() =>{
+          res(products.find(prod => prod.id ===id))
+      },500)
+  })
+}

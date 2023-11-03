@@ -4,7 +4,7 @@ import { Filter } from "./Filter";
 const productFiltered = ({ products, filterState, handleFilterChange }) => {
   return (
     <>
-      <div className="col">
+      <div className="col-4">
         <label>Buscar</label>
         <input
           className="form-control"
@@ -14,18 +14,11 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
         />
       </div>
       <div className="row">
-        {filterState === ""
-          ? products.map((product) => (
-              <div
-                className="col-4 mt-4"
-                key={product.id}
-              >
+        {filterState === "" ? 
+            products.map((product) => (
+              <div className="col-4 mt-4">
                 <div className="card mb-3">
-                  <img
-                    src={product.image}
-                    className="card-img-top"
-                    alt={product.name}
-                  />
+                  <img src={product.image} className="card-img-top" alt={product.name}/>
                   <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text">Categoría: {product.category}</p>
@@ -42,40 +35,33 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
               </div>
             ))
           : products
-              .filter((prod) =>
-                prod.name.toLowerCase().includes(filterState.toLowerCase())
+              .filter(
+                prod => prod.name.toLowerCase().includes(filterState.toLowerCase())
               )
               .map((product) => (
-                <div
-                  className="col-4 mt-4"
-                  key={product.id}
-                >
+                <div className="col-4 mt-4" key={product.id}>
                   <div className="card mb-3">
-                    <img
-                      src={product.image}
-                      className="card-img-top"
-                      alt={product.name}
-                    />
+                    <img src={product.image} className="card-img-top" alt={product.name}/>
                     <div className="card-body">
                       <h5 className="card-title">{product.name}</h5>
                       <p className="card-text">Categoría: {product.category}</p>
                       <p className="card-text">Precio: {product.price}</p>
                     </div>
                     <div>
-                      <Link to={`/category/${product.id}`}>
-                        <button className="btn w-100 btn-outline-primary">
-                          Detalle
-                        </button>
-                      </Link>
+                        <button className="btn w-100 btn-outline-primary">Detalle</button>
                     </div>
                   </div>
                 </div>
               ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export const ItemList = ({ products }) => {
-  return <Filter products={products}>{productFiltered}</Filter>;
-};
+export const ItemList = ({products}) => {
+  return (
+      <Filter products={products} >
+          {productFiltered}
+      </Filter>
+  )
+}

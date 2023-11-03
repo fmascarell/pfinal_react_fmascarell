@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { mFetch, mFetchUnique } from "../../helpers/mFetch"
 import { ItemCounter } from "../ItemCounter/ItemCounter"
+import Swal from 'sweetalert2'
 
 export const ItemDetailContainer = () => {
 
@@ -10,7 +11,13 @@ export const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
 
     const onAdd = cant => {
-        console.log("Cantidad: " + cant)
+        const resultado = 'Cantidad a agregar: ' + cant;
+
+        Swal.fire({
+            title: 'Resultado',
+            text: resultado,
+            icon: 'info',
+        });
     }
 
     useEffect(() => {

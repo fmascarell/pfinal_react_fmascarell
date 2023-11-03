@@ -1,7 +1,8 @@
 .nav-link {
-  color: #007bff; 
+  color: #b5bdc1; 
   text-decoration: none; 
   padding: 5px 10px; 
+  height: 30px;
 }
 
 .nav-link:hover {

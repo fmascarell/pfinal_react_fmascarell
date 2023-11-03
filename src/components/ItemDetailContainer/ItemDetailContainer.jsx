@@ -15,17 +15,18 @@ export const ItemDetailContainer = () => {
 
     useEffect(() => {
             mFetchUnique(pid)
-            .then( response => setProduct(response) )
+            .then(response => setProduct(response) )
             .catch(error => console.log(error))
             .finally(() => setLoading(false))  
 
     },[]
     )
+    console.log(product)
 
     return (
         <div className="row">
             <div className="col-6 mt-5">
-                    <img src={product.image} className="img-fluid" />
+                <img src={product.image} className="img-fluid" />
             </div>
             <div className="col-6 mt-5">
             <p>Sku: {pid}</p>

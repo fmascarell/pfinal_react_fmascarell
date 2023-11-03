@@ -15,8 +15,8 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
       </div>
       <div className="row">
         {filterState === "" ? 
-            products.map((product) => (
-              <div className="col-4 mt-4">
+            products.map((product, i) => (
+              <div className="col-4 mt-4" key={i}>
                 <div className="card mb-3">
                   <img src={product.image} className="card-img-top" alt={product.name}/>
                   <div className="card-body">
@@ -25,7 +25,7 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
                     <p className="card-text">Precio: {product.price}</p>
                   </div>
                   <div>
-                    <Link to={`/category/${product.id}`}>
+                    <Link to={`/category/detail/${product.id}`}>
                       <button className="btn w-100 btn-outline-primary">
                         Detalle
                       </button>
@@ -38,8 +38,8 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
               .filter(
                 prod => prod.name.toLowerCase().includes(filterState.toLowerCase())
               )
-              .map((product) => (
-                <div className="col-4 mt-4" key={product.id}>
+              .map((product, i) => (
+                <div className="col-4 mt-4" key={i}>
                   <div className="card mb-3">
                     <img src={product.image} className="card-img-top" alt={product.name}/>
                     <div className="card-body">

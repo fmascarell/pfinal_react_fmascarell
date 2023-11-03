@@ -66,8 +66,10 @@ export const mFetch=() => {
 
 export const mFetchUnique=(id)=> {
   return new Promise((res,rej)=>{
+      const p = products.find(prod => prod.id ===id)
+      console.log(p)
       setTimeout(() =>{
-          res(products.find(prod => prod.id ===id))
+          res(p)
       },500)
   })
 }

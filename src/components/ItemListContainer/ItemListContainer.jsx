@@ -5,10 +5,9 @@ import { ItemList } from "../ItemList/ItemList";
 import Titulo from "../Titulo/Titulo";
 
 function ItemListContainer({ greeting = "prueba" }) {
-  
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   const { cid } = useParams();
   console.log(cid);
   console.log([products]);
@@ -16,14 +15,15 @@ function ItemListContainer({ greeting = "prueba" }) {
   useEffect(() => {
     if (cid) {
       mFetch()
-        .then((resultado) =>
-          setProducts(resultado.filter((product) => product.category === cid))
+        .then((response) =>
+          setProducts(response.filter((product) => product.category === cid))
         )
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));
+        console.log(cid)
     } else {
       mFetch()
-        .then((resultado) => setProducts(resultado))
+        .then((response) => setProducts(response))
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));
     }
@@ -31,12 +31,12 @@ function ItemListContainer({ greeting = "prueba" }) {
 
   return (
     <>
-    <Titulo titulo = {greeting}/>
-    <div>
-      {loading ? <h2>Por favor espera...</h2> : <ItemList products={products} />}
-    </div>
+      <Titulo titulo={greeting} />
+      <div className="d-flex justify-content-center">
+        {loading ? <h2>Cargando...</h2> : <ItemList products={products} />}
+      </div>
     </>
-  );
+  )
 }
 
-export default ItemListContainer;
+export default ItemListContainer

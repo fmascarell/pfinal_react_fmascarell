@@ -3,7 +3,7 @@ import { Filter } from "./Filter";
 
 const productFiltered = ({ products, filterState, handleFilterChange }) => {
   return (
-    <>
+    <div className="col">
       <div className="col-4">
         <label>Buscar</label>
         <input
@@ -54,7 +54,7 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
                 </div>
               ))}
       </div>
-    </>
+    </div>
   )
 }
 

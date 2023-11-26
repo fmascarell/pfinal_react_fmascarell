@@ -1,48 +1,46 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { mFetch, mFetchUnique } from "../../helpers/mFetch"
-import { ItemCounter } from "../ItemCounter/ItemCounter"
-import Swal from 'sweetalert2'
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { mFetchUnique } from "../../helpers/mFetch";
+import { CartContext } from "../CartContext/CartContext";
+import { useCounter } from "../Hooks/UseCounter";
+import { ItemCounter } from "../ItemCounter/ItemCounter";
 
 export const ItemDetailContainer = () => {
+  const [product, setProduct] = useState({});
+  const { pid } = useParams();
+  const { addToCart } = useContext(CartContext);
 
-    const [product, setProduct] = useState({})
-    const {pid} = useParams()
-    const [loading, setLoading] = useState(true)
+  const { count, handleResta, handleSuma } = useCounter(0, 10);
 
-    const onAdd = cant => {
-        const resultado = 'Cantidad a agregar: ' + cant;
+  useEffect(() => {
+    mFetchUnique(pid)
+      .then((response) => setProduct(response))
+      .catch((error) => console.log(error));
+  }, [pid]);
 
-        Swal.fire({
-            title: 'Resultado',
-            text: resultado,
-            icon: 'info',
-        });
-    }
+  const onAdd = () => {
+    // Agrega el producto al carrito con la cantidad actual del contador
+    addToCart(product, count);
+  };
 
-    useEffect(() => {
-            mFetchUnique(pid)
-            .then(response => setProduct(response) )
-            .catch(error => console.log(error))
-            .finally(() => setLoading(false))  
+  return (
+    <div className="row">
+      <div className="col-6 mt-5">
+        <img src={product.image} className="img-fluid" alt="Producto" />
+      </div>
+      <div className="col-6 mt-5">
+        <p>Sku: {pid}</p>
+        <p>Nombre: {product.name} </p>
+        <p>Categoría: {product.category} </p>
+        <p>Precio: {product.price} </p>
 
-    },[]
-    )
-    console.log(product)
-
-    return (
-        <div className="row">
-            <div className="col-6 mt-5">
-                <img src={product.image} className="img-fluid" />
-            </div>
-            <div className="col-6 mt-5">
-            <p>Sku: {pid}</p>
-            <p>Nombre: {product.name} </p>
-            <p>Category: {product.category} </p>
-            <p>Precio: {product.price} </p>
-
-            <ItemCounter onAdd={onAdd}/>
-            </div>
-        </div>
-    )
-}
+        <ItemCounter
+          count={count}
+          handleResta={handleResta}
+          handleSuma={handleSuma}
+          onAdd={onAdd}
+        />
+      </div>
+    </div>
+  );
+};

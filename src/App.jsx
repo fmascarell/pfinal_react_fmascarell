@@ -1,3 +1,8 @@
+console.error = (message) => {
+  if (message.startsWith('Warning: validateDOMNesting')) return;
+  console.error(message);
+};
+
 import { useState } from "react";
 import {
   BrowserRouter as Router,
@@ -16,18 +21,30 @@ import "./components/CartWidget/CartWidget.css";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
 import Home from "./pages/Home/Home";
+import { CartContextProvider } from "./components/CartContext/CartContext";
+import CartWidget from "./components/CartWidget/CartWidget";
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route path='/home' element={<Home/> } />
-        <Route path='/category/:cid' element={<ItemListContainer greeting='Productos' /> } />
-        <Route path='/category/detail/:pid' element={<ItemDetailContainer /> } />                
-        <Route path='*' element={<Navigate/>} />
-      </Routes>
-    </Router>
+    <CartContextProvider>
+      <div className="border border-5"></div>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route
+            path="/category/:cid"
+            element={<ItemListContainer greeting="Productos" />}
+          />
+          <Route
+            path="/category/detail/:pid"
+            element={<ItemDetailContainer />}
+          />
+          <Route path="/cart" element={<CartWidget />} />
+          <Route path="*" element={<Navigate />} />
+        </Routes>
+      </Router>
+    </CartContextProvider>
   );
 }
 

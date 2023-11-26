@@ -6,6 +6,7 @@ const CartWidget = () => {
 
   const totalItems = cartList.reduce((total, item) => total + item.quantity, 0);
   const totalItemsToShow = isNaN(totalItems) ? 0 : totalItems;
+  console.log("cantidad en el carrito " + totalItemsToShow)
 
   return (
     <div style={{ position: 'relative', display: 'flex', marginRight: '20px' }}>

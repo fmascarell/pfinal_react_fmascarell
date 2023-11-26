@@ -23,6 +23,7 @@ import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetail
 import Home from "./pages/Home/Home";
 import { CartContextProvider } from "./components/CartContext/CartContext";
 import CartWidget from "./components/CartWidget/CartWidget";
+import { CartContainer } from "./components/CartContainer/CartContainer";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
             path="/category/detail/:pid"
             element={<ItemDetailContainer />}
           />
-          <Route path="/cart" element={<CartWidget />} />
+          <Route path="/cart" element={<CartContainer />} />
           <Route path="*" element={<Navigate />} />
         </Routes>
       </Router>

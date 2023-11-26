@@ -19,8 +19,8 @@ export const ItemDetailContainer = () => {
   }, [pid]);
 
   const onAdd = () => {
-    // Agrega el producto al carrito con la cantidad actual del contador
     addToCart(product, count);
+    console.log("Adding to cart with quantity: " + count)
   };
 
   return (

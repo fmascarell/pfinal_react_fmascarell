@@ -10,11 +10,9 @@ export const useCounter = (min, max) => {
     }
      
     const handleResta = () => {
-        if (count >= min) {
+        if (count > min) {
             setCount(count - 1)            
-        } else if (count === 0){
-            setCount(1);
-        }
+        } 
     }
     console.log("contador use counter " + count)
     

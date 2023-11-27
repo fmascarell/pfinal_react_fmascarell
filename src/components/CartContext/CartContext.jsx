@@ -10,14 +10,26 @@ export const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
 
   const addToCart = (product, quantity) => {
-    // Actualizar el estado del carrito
-    setCartList((prevCartList) => [
-      ...prevCartList,
-      { product, quantity }
-    ]);
+    console.log("Adding to cart: ", product, " with quantity: ", quantity);
+  
+    const existingCartItemIndex = cartList.findIndex(item => item.product.id === product.id);
+  
+    if (existingCartItemIndex !== -1) {
+      // El producto ya existe en el carrito, actualiza la cantidad
+      setCartList(prevCartList => {
+        const updatedCartList = [...prevCartList];
+        updatedCartList[existingCartItemIndex].quantity += quantity;
+        return updatedCartList;
+      });
+      console.log("producto existe");
+    } else {
+      // El producto no existe en el carrito, agrega una nueva entrada
+      setCartList(prevCartList => [...prevCartList, { product, quantity }]);
+      console.log("producto no existe");
+    }
   };
+   
 
-  // UseEffect para mostrar el contenido del carrito cada vez que cambia
   useEffect(() => {
     console.log("Carrito actualizado:", cartList);
   }, [cartList]);

@@ -22,7 +22,7 @@ export const ItemCounter = ({ initial = 0, stock = 10, onAdd }) => {
 
   return (
     <div className="text-center d-flex justify-content-center">
-      <div className="border border-1 border-dark rounded mt-4 mb-4 mr-4">
+      <div className="border border-1 border-dark rounded mt-4 mb-4">
         <button className="btn" onClick={handleResta}>
           -
         </button>
@@ -31,8 +31,8 @@ export const ItemCounter = ({ initial = 0, stock = 10, onAdd }) => {
           +
         </button>
       </div>
-      <div className="border border-1 border-dark rounded mt-4 mb-4">
-        <button className="btn" onClick={handleOnAdd}>
+      <div className=" border border-1 border-dark rounded rounded mt-4 mb-4">
+        <button className="btn color" onClick={handleOnAdd}>
           Agregar al carrito
         </button>
       </div>

@@ -2,3 +2,17 @@
     background-color: black; 
     color: #fff; 
   }
+
+.color {
+    background-color: black;
+    color: #fff;
+}
+
+.color:hover {
+    background-color: rgb(202, 9, 9);
+    color: #fff;
+}
+
+.rounded {
+    border-radius: 40px; 
+  }

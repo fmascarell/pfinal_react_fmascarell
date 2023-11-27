@@ -18,10 +18,10 @@ export const ItemDetailContainer = () => {
       .catch((error) => console.log(error));
   }, [pid]);
 
-  const onAdd = () => {
-    addToCart(product, count);
-    console.log("Adding to cart with quantity: " + count)
-  };
+  //const onAdd = () => {
+  //  addToCart(product, count);
+  //  console.log("Adding to cart with quantity: " + count)
+  //};
 
   return (
     <div className="row">
@@ -38,7 +38,7 @@ export const ItemDetailContainer = () => {
           count={count}
           handleResta={handleResta}
           handleSuma={handleSuma}
-          onAdd={onAdd}
+          onAdd={(quantity) => addToCart(product, quantity)} 
         />
       </div>
     </div>

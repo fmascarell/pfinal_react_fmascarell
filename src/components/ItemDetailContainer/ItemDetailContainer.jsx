@@ -38,7 +38,7 @@ export const ItemDetailContainer = () => {
           count={count}
           handleResta={handleResta}
           handleSuma={handleSuma}
-          onAdd={(quantity) => addToCart(product, quantity)} 
+          onAdd={(quantity) => addToCart({...product, quantity})} 
         />
       </div>
     </div>

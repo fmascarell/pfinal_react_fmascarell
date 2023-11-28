@@ -9,27 +9,29 @@ export const useCart = () => {
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (product, quantity) => {
-    console.log("Adding to cart: ", product, " with quantity: ", quantity);
-
+  const addToCart = (product) => {
+    console.log("Adding to cart: ", product);
+    console.log("cart actual ", cart)
     const existingCartItem = cart.find(
-      (item) => item.product.id === product.id
+      (item) => item.id === product.id
     );
 
     if (existingCartItem) {
+      console.log("existingCartItem ", existingCartItem)
       setCart((prevCart) => {
         const updatedCart = prevCart.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: quantity }
+          item.id === product.id
+            ? {...item, quantity: product.quantity}
             : item
         );
+        console.log("updatedCart ", updatedCart)
         return updatedCart;
       });
       console.log("producto existe");
     } else {
       setCart((prevCart) => [
         ...prevCart,
-        { product: { ...product, quantity }, quantity },
+        { ...product},
       ]);
       console.log("producto no existe");
     }

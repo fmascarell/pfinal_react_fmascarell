@@ -4,19 +4,22 @@ import { useCart } from "../CartContext/CartContext";
 const CartWidget = () => {
   const { cart } = useCart();
 
-  const totalProducts = cart.length > 0 ? cart[0].product.quantity : 0;
-  console.log("total product " + totalProducts);
+  const total = cart && cart.length
+      ? cart.reduce((suma, data) => Number(suma) + Number(data.quantity), 0)
+      : 0;
+
+  console.log("total product " + total);
 
   const cartItems = cart.map((item, index) => (
     <div key={index}>
-      <p>{`Producto: ${item.product.name}, Cantidad: ${item.quantity}`}</p>
-      <img src={item.product.image} alt={item.product.name} />
+      <p>{`Producto: ${item.name}, Cantidad: ${item.quantity}`}</p>
+      <img src={item.image} alt={item.name} />
     </div>
   ));
 
   return (
     <div style={{ position: "relative", display: "flex", marginRight: "20px" }}>
-      <span style={circleStyle}>{totalProducts}</span>
+      <span style={circleStyle}>{total}</span>
       <img className="cartWidget" src="/img/carrito.png" alt="Carrito" />
       {/*<div>         
         {cartItems}

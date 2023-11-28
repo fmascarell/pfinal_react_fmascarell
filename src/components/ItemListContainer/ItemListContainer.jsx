@@ -9,8 +9,6 @@ function ItemListContainer({ greeting = "prueba" }) {
   const [loading, setLoading] = useState(true);
 
   const { cid } = useParams();
-  console.log(cid);
-  console.log([products]);
 
   useEffect(() => {
     if (cid) {
@@ -30,12 +28,12 @@ function ItemListContainer({ greeting = "prueba" }) {
   }, [cid]);
 
   return (
-    <>
+    <div className="marginP">
       <Titulo titulo={greeting} />
       <div className="d-flex justify-content-center">
         {loading ? <h2>Cargando...</h2> : <ItemList products={products} />}
       </div>
-    </>
+    </div>
   )
 }
 

@@ -22,7 +22,7 @@ function NavBar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavLink className="nav-link" to="/home">
+              <NavLink className="nav-link" to="/">
                 Inicio
               </NavLink>
               <NavDropdown title="Productos" id="collapsible-nav-dropdown">

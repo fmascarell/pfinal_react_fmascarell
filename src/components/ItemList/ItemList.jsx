@@ -3,8 +3,8 @@ import { Filter } from "./Filter";
 
 const productFiltered = ({ products, filterState, handleFilterChange }) => {
   return (
-    <div className="col">
-      <div className="col-4">
+    <div className="col marginP">
+      <div className="col-3">
         <label>Buscar</label>
         <input
           className="form-control"
@@ -16,9 +16,9 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
       <div className="row">
         {filterState === "" ? 
             products.map((product, i) => (
-              <div className="col-4 mt-4" key={i}>
+              <div className="col-3 mt-4" key={i}>
                 <div className="card mb-3">
-                  <img src={product.image} className="card-img-top" alt={product.name}/>
+                  <img src={product.image} className="card-img-top image-size-list" alt={product.name}/>
                   <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text">Categoría: {product.category}</p>
@@ -39,9 +39,9 @@ const productFiltered = ({ products, filterState, handleFilterChange }) => {
                 prod => prod.name.toLowerCase().includes(filterState.toLowerCase())
               )
               .map((product, i) => (
-                <div className="col-4 mt-4" key={i}>
+                <div className="col-3 mt-4" key={i}>
                   <div className="card mb-3">
-                    <img src={product.image} className="card-img-top" alt={product.name}/>
+                    <img src={product.image} className="card-img-top image-size-list" alt={product.name}/>
                     <div className="card-body">
                       <h5 className="card-title">{product.name}</h5>
                       <p className="card-text">Categoría: {product.category}</p>

@@ -1,14 +1,3 @@
-#root {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
 
 @keyframes logo-spin {
   from {
@@ -35,4 +24,14 @@ body {
 
 .titulo {
   font-size: 32pt;
+}
+
+.marginP {
+  margin: 40px;
+}
+
+.image-size-list {
+  max-width: 300px; 
+  height: auto; 
+  margin-right: 10px; 
 }

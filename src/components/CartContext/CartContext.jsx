@@ -11,13 +11,11 @@ export const CartContextProvider = ({ children }) => {
 
   const addToCart = (product) => {
     console.log("Adding to cart: ", product);
-    console.log("cart actual ", cart)
     const existingCartItem = cart.find(
       (item) => item.id === product.id
     );
 
     if (existingCartItem) {
-      console.log("existingCartItem ", existingCartItem)
       setCart((prevCart) => {
         const updatedCart = prevCart.map((item) =>
           item.id === product.id
@@ -27,13 +25,13 @@ export const CartContextProvider = ({ children }) => {
         console.log("updatedCart ", updatedCart)
         return updatedCart;
       });
-      console.log("producto existe");
+      //console.log("producto existe");
     } else {
       setCart((prevCart) => [
         ...prevCart,
         { ...product},
       ]);
-      console.log("producto no existe");
+      //console.log("producto no existe");
     }
   };
 

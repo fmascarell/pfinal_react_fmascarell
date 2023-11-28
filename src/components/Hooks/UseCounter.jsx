@@ -14,7 +14,7 @@ export const useCounter = (min, max) => {
             setCount(count - 1)            
         } 
     }
-    console.log("contador use counter " + count)
+    //console.log("contador use counter " + count)
     
     return {
         count,

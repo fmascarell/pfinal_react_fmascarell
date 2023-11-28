@@ -28,7 +28,6 @@ import { CartContainer } from "./components/CartContainer/CartContainer";
 function App() {
   return (
     <CartContextProvider>
-      <div className="border border-5"></div>
       <Router>
         <NavBar />
         <Routes>

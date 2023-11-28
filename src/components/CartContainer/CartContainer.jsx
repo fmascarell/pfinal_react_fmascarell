@@ -1,82 +1,29 @@
+import React from "react";
+import { Card, Button } from "react-bootstrap";
+import { useCart } from "../CartContext/CartContext";
 
 export const CartContainer = () => {
+  const { cart } = useCart();
+  console.log("cartcontainer ", cart)
 
-//  const { cartList, vaciarCarrito, totalPrice } = useCartContext()
-//
-//    const handleOrders = () => {
-//        const order = {}
-//        order.buyer = { name: 'Francia Mascarell', phone: '997410907', email: 'fran.mascarell@hotmail.com' }
-//        // order.items = [{id: '', price: '', title: '', cant: ''}]
-//        order.items = cartList.map(( { id, price, cant, name } ) => ( { id: id, price: price, name: name, cant: cant} ) )
-//        order.total = totalPrice()  
-//
-//        const db = getFirestore()
-//        
-//        // crear - insertando nuestra order en firestore
-//        const queryCollection = collection(db, 'orders')
-//
-//        addDoc(queryCollection, order)
-//        .then(({ id }) => console.log(id))
-//        .catch(err => console.log(err))
-//
-//
-//        // 1- crear un formulario cree productos - dash admin
-//        // for - suben muchos productos
-//        
-//
-//        /// update - actulizar 
-//        // const queryDoc = doc(db, 'products', 'zcekFHPaKYQP3yQtge3N')
-//
-//        // updateDoc(queryDoc, {
-//        //     stock: 90
-//        // })
-//        // .then(()=> console.log('procuto actualizado'))
-//        // .catch(err => console.log(err))
-//
-//        // escritura por lotes
-//        // const db = getFirestore()
-//        // const batch = writeBatch(db)
-//
-//        // const queryUpdateProduct1 = doc(db, 'products', 'zcekFHPaKYQP3yQtge3N')
-//        // const queryUpdateProduct2 = doc(db, 'products', 'Mp3HMRxD68nWlauQkraH')
-//
-//        // batch.update(queryUpdateProduct1, {
-//        //     stock: 50
-//        // })
-//        // batch.update(queryUpdateProduct2, {
-//        //     stock: 90
-//        // })
-//
-//        // batch.commit()       
-//        
-//
-//
-//        // console.log('Enviando order: ', order)
-//        // console.log(cartList)
-//    }
-//  
-//  // console.log(cartList)
-//  return (
-//    <div className="w-100">
-//        { cartList.map(product => <div>
-//                                    <img className="w-25" src={product.imageUrl} alt="image" />
-//                                    Producto: {product.name} - Price: {product.price} - Cantidad: {product.cant}
-//                                    <button className="btn btn-danger"> X </button>
-//
-//                                    <hr/>
-//                                  </div>) 
-//        }
-//        Precio Total: { totalPrice() }
-//        <br />
-//
-//        <button 
-//          className="btn btn-outline-danger" 
-//          onClick={vaciarCarrito}
-//        >
-//          Vaciar carrito
-//        </button>
-//        <br />
-//        <button onClick={handleOrders}>Terminar compra</button>
-//    </div>
-//  )
-}
+  return (
+    <div className="container">
+      <h2>Carrito de Compras</h2>
+      {cart.map((item, index) => (
+        <div className="row m-2" key={index}>
+          <div className="col d-flex flex-column">
+            <img style={{ maxWidth: '50px', height: '50px', marginRight: '10px' }} src={item.image} alt={item.name} />
+            <div className="d-flex justify-content-between align-items-center">
+              <p>{`Producto: ${item.name}`}</p>
+              <p>{`Cantidad: ${item.quantity}`}</p>
+            </div>
+            <div className="d-flex justify-content-between align-items-center">
+              <p>{`Total: $${item.price * item.quantity}`}</p>
+              <Button variant="danger">Eliminar</Button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};

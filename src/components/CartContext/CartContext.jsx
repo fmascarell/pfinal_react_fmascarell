@@ -7,35 +7,42 @@ export const useCart = () => {
 };
 
 export const CartContextProvider = ({ children }) => {
-  const [cartList, setCartList] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const addToCart = (product, quantity) => {
     console.log("Adding to cart: ", product, " with quantity: ", quantity);
-  
-    const existingCartItemIndex = cartList.findIndex(item => item.product.id === product.id);
-  
-    if (existingCartItemIndex !== -1) {
-      // El producto ya existe en el carrito, actualiza la cantidad
-      setCartList(prevCartList => {
-        const updatedCartList = [...prevCartList];
-        updatedCartList[existingCartItemIndex].quantity += quantity;
-        return updatedCartList;
+
+    const existingCartItem = cart.find(
+      (item) => item.product.id === product.id
+    );
+
+    if (existingCartItem) {
+      setCart((prevCart) => {
+        const updatedCart = prevCart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: quantity }
+            : item
+        );
+        return updatedCart;
       });
       console.log("producto existe");
     } else {
-      // El producto no existe en el carrito, agrega una nueva entrada
-      setCartList(prevCartList => [...prevCartList, { product, quantity }]);
+      setCart((prevCart) => [
+        ...prevCart,
+        { product: { ...product, quantity }, quantity },
+      ]);
       console.log("producto no existe");
     }
   };
-   
 
   useEffect(() => {
-    console.log("Carrito actualizado:", cartList);
-  }, [cartList]);
+    if (cart) {
+      console.log("Carrito actualizado:", cart);
+    }
+  }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cartList, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart }}>
       {children}
     </CartContext.Provider>
   );

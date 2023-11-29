@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCounter } from "../Hooks/UseCounter";
 import "./ItemCounter.css";
 
-export const ItemCounter = ({ initial = 0, stock = 10, onAdd }) => {
+export const ItemCounter = ({ initial = 0, stock = 10, onAdd, showAlert }) => {
   const { count, handleResta, handleSuma, setCount } = useCounter(
     initial,
     stock
@@ -13,8 +13,14 @@ export const ItemCounter = ({ initial = 0, stock = 10, onAdd }) => {
     console.log("Current count: " + count);
   }, [count]);
 
+
   const handleOnAdd = () => {
-    onAdd(count);
+    if (count > 0) {
+      onAdd(count);
+      showAlert("success", "El carrito ha sido actualizado.");
+    } else {
+      showAlert("danger", "Debes seleccionar al menos una unidad.");
+    }
   };
 
   return (

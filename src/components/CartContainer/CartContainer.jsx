@@ -8,13 +8,13 @@ export const CartContainer = () => {
   console.log("cartcontainer ", cart)
 
   return (
-    <div className="cartcontainer">
+    <div>
       <Titulo titulo={"Carrito de Compras"} />
       {cart.map((item, index) => (
-        <div className="row m-2" key={index}>
+        <div className="row m-2" style={{margin: '50px'}} key={index}>
           <div className="col d-flex flex-column">
             <img style={{ maxWidth: '50px', height: '50px', marginRight: '10px' }} src={item.image} alt={item.name} />
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-end align-items-center">
               <div>{`Producto: ${item.name}`}</div>
               <div>{`Cantidad: ${item.quantity}`}</div>
             </div>

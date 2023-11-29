@@ -4,6 +4,7 @@ import { mFetchUnique } from "../../helpers/mFetch";
 import { CartContext } from "../CartContext/CartContext";
 import { useCounter } from "../Hooks/UseCounter";
 import { ItemCounter } from "../ItemCounter/ItemCounter";
+import Titulo from "../Titulo/Titulo";
 
 export const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
@@ -24,21 +25,32 @@ export const ItemDetailContainer = () => {
   //};
 
   return (
-    <div className="row">
-      <div className="col-6 mt-5">
-        <img src={product.image} className="img-fluid" alt="Producto" />
-      </div>
-      <div className="col-6 mt-5">
-        <p>Sku: {pid}</p>
-        <p>Nombre: {product.name} </p>
-        <p>Categoría: {product.category} </p>
-        <p>Precio: {product.price} </p>
-
+    <div className="container">
+      <Titulo titulo={"Detalle del producto"} />
+      <div className="row marginT">
+        <div
+          id="imag"
+          className="col marginT"
+          style={{ display: "flex", alignItems: "flex-start" }}
+        >
+          <img
+            src={product.image}
+            className="img-fluid image-size-item"
+            alt="Producto"
+            style={{ maxWidth: "50%", height: "auto" }}
+          />
+        </div>
+        <div id="dtl" className="col">
+          <p>Sku: {pid}</p>
+          <p>Nombre: {product.name} </p>
+          <p>Categoría: {product.category} </p>
+          <p>Precio: {product.price} </p>
+        </div>
         <ItemCounter
           count={count}
           handleResta={handleResta}
           handleSuma={handleSuma}
-          onAdd={(quantity) => addToCart({...product, quantity})} 
+          onAdd={(quantity) => addToCart({ ...product, quantity })}
         />
       </div>
     </div>

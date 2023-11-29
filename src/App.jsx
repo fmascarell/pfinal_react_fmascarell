@@ -38,9 +38,9 @@ function App() {
           />
           <Route
             path="/category/detail/:pid"
-            element={<ItemDetailContainer />}
+            element={<ItemDetailContainer greeting="Detalle Producto"/>}
           />
-          <Route path="/cart" element={<CartContainer />} />
+          <Route path="/cart" element={<CartContainer greeting="Carro de Compras"/>} />
           <Route path="*" element={<Navigate />} />
         </Routes>
       </Router>

@@ -31,7 +31,7 @@ function ItemListContainer({ greeting = "prueba" }) {
     <div className="marginP">
       <Titulo titulo={greeting} />
       <div className="d-flex justify-content-center">
-        {loading ? <h2>Cargando...</h2> : <ItemList products={products} />}
+        {loading ? <h2 className="justify-content-center">Cargando...</h2> : <ItemList products={products} />}
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useCart } from "../CartContext/CartContext";
+import Titulo from "../Titulo/Titulo";
 
 export const CartContainer = () => {
   const { cart } = useCart();
@@ -8,7 +9,7 @@ export const CartContainer = () => {
 
   return (
     <div className="cartcontainer">
-      <h2>Carrito de Compras</h2>
+      <Titulo titulo={"Carrito de Compras"} />
       {cart.map((item, index) => (
         <div className="row m-2" key={index}>
           <div className="col d-flex flex-column">

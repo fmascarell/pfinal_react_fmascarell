@@ -14,10 +14,7 @@ export const ItemCounter = ({ initial = 0, stock = 10, onAdd }) => {
   }, [count]);
 
   const handleOnAdd = () => {
-    console.log("Adding to cart with count: " + count);
     onAdd(count);
-    //setShowButtons(false);
-    //setCount(1)
   };
 
   return (

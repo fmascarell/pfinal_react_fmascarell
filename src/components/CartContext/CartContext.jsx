@@ -10,7 +10,6 @@ export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    console.log("Adding to cart: ", product);
     const existingCartItem = cart.find(
       (item) => item.id === product.id
     );
@@ -22,7 +21,6 @@ export const CartContextProvider = ({ children }) => {
             ? {...item, quantity: product.quantity}
             : item
         );
-        console.log("updatedCart ", updatedCart)
         return updatedCart;
       });
       //console.log("producto existe");

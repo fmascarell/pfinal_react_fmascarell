@@ -33,6 +33,10 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
+
   useEffect(() => {
     if (cart) {
       console.log("Carrito actualizado:", cart);
@@ -40,7 +44,7 @@ export const CartContextProvider = ({ children }) => {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

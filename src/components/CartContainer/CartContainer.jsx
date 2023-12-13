@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useCart } from "../CartContext/CartContext";
 import Titulo from "../Titulo/Titulo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { OrderForm } from "../OrderForm/OrderForm";
 
 export const CartContainer = () => {
   const { cart, removeFromCart } = useCart();
-  console.log("cartcontainer ", cart);
+  const [showOrderForm, setShowOrderForm] = useState(false);
 
   const totalAmount = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -16,6 +17,10 @@ export const CartContainer = () => {
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
+  };
+
+  const handleToggleOrderForm = () => {
+    setShowOrderForm((prevShowOrderForm) => !prevShowOrderForm);
   };
 
   return (
@@ -42,7 +47,9 @@ export const CartContainer = () => {
                 />
                 <div className="m-4">{`X ${item.quantity}`}</div>
                 <div className="m-4">{`${item.name}`}</div>
-                <div className="m-4">{`Total: $${item.price * item.quantity}`}</div>
+                <div className="m-4">{`Total: $${
+                  item.price * item.quantity
+                }`}</div>
                 <Button
                   className="m-4"
                   variant="danger"
@@ -55,6 +62,15 @@ export const CartContainer = () => {
           ))}
           <div className="text-center justify-content-center mt-2">
             <h2>Total: ${totalAmount.toFixed(2)}</h2>
+          </div>
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <button
+              className="btn btn-danger"
+              //onClick={
+              //  <OrderForm></OrderForm>}
+              >
+              Continuar compra
+            </button>
           </div>
         </>
       )}

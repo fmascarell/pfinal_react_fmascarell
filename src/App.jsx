@@ -1,7 +1,7 @@
-console.error = (message) => {
-  if (message.startsWith('Warning: validateDOMNesting')) return;
-  console.error(message);
-};
+//console.error = (message) => {
+//  if (message.startsWith('Warning: validateDOMNesting')) return;
+//  console.error(message);
+//};
 
 import { useState } from "react";
 import {

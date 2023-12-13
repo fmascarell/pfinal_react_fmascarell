@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { mFetchUnique } from "../../helpers/mFetch";
 import { MyAlert } from "../Alert/Alert";
+import { doc, getDoc, getFirestore } from "firebase/firestore"
 import { CartContext } from "../CartContext/CartContext";
 import { useCounter } from "../Hooks/UseCounter";
 import { ItemCounter } from "../ItemCounter/ItemCounter";
@@ -10,17 +9,22 @@ import Titulo from "../Titulo/Titulo";
 
 export const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
+  const [ loading, setLoading ] = useState(true)
+
   const { pid } = useParams();
   const { addToCart } = useContext(CartContext);
 
   const { count, handleResta, handleSuma } = useCounter(0, 10);
   const [alert, setAlert] = useState({ variant: "", message: "" });
 
-  useEffect(() => {
-    mFetchUnique(pid)
-      .then((response) => setProduct(response))
-      .catch((error) => console.log(error));
-  }, [pid]);
+  useEffect(() =>{
+    const dbFirestore = getFirestore()
+    const queryDoc = doc(dbFirestore, 'products', pid)
+    getDoc(queryDoc)
+    .then(res => setProduct( {id: res.id, ...res.data() } ))
+    .catch(err => console.log(err))
+    .finally(()=> setLoading(false))
+}, [pid])
 
   useEffect(() => {
     const timeout = setTimeout(() => {

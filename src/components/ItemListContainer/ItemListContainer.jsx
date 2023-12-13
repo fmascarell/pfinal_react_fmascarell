@@ -1,31 +1,25 @@
 import { useEffect, useState } from "react";
+import { getFirestore, getDocs, query, collection, where } from 'firebase/firestore'
 import { useParams } from "react-router-dom";
-import { mFetch } from "../../helpers/mFetch";
 import { ItemList } from "../ItemList/ItemList";
 import Titulo from "../Titulo/Titulo";
 
 function ItemListContainer({ greeting = "prueba" }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const { cid } = useParams();
 
-  useEffect(() => {
-    if (cid) {
-      mFetch()
-        .then((response) =>
-          setProducts(response.filter((product) => product.category === cid))
-        )
-        .catch((error) => console.log(error))
-        .finally(() => setLoading(false));
-        console.log(cid)
-    } else {
-      mFetch()
-        .then((response) => setProducts(response))
-        .catch((error) => console.log(error))
-        .finally(() => setLoading(false));
-    }
-  }, [cid]);
+useEffect (()=>{
+  const dbFirestore = getFirestore()
+  const queryCollection = collection(dbFirestore, 'products')
+  
+  const queryFilter = cid ? query(queryCollection, where('category', '==', cid)) : queryCollection
+
+  getDocs(queryFilter)
+  .then(res => { setProducts(res.docs.map(product => ({ id: product.id, ...product.data() }))) })
+  .catch(err => console.log(err))
+  .finally(()=> setLoading(false))
+}, [cid])
 
   return (
     <div className="marginP">
